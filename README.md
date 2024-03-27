@@ -1,4 +1,30 @@
 # 임승주 202030229
+## 3월 27일 강의 내용
+### JSX(JavaScript XML)
+#### JSX란?
+    - JavaScript에 XML을 추가한 확장 문법.
+#### JSX의 역할
+    - JSX는 내부적으로 XML/HTML 코드를 자바스크립트로 변환함
+    - React가 createElement함수를 사용하여 자동으로 자바스크립트로 변환함
+    - 만일 JS작업할 경우 직접 createElement함수를 사용해야 함
+    - JSX는 가독성을 높여 주는 역할을 함
+```jsx
+    class Hello extends React.Componet {
+    render() {
+        return <div>Hello {this.props.toWhat}</div>
+        }
+    }
+    export default Hello;
+```
+#### JSX의 장점
+    - 코드가 간결해짐
+    - 가독성이 향상됨
+    - InJection Attack이라 불리는 해킹 방법을 방어함으로써 보안에 강해짐
+#### JSX 사용법
+    - 모든 자바스크립트 문법 지원
+    - 자바스크립트 문법에 XML과 HTML을 섞어서 사용
+    - 만일 html이나 xml에 자바스크립트 코드를 사용하고 싶으면 {}괄호를 사용
+
 ## 3월20일 강의 내용
 ### 리액트 장점
     1. 빠른 업데이트와 렌더링 속도 
