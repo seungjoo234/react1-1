@@ -37,9 +37,9 @@ class NotificationList extends React.Component {
                     notifications: notifications,
                 });
             } else {
-                this.setState({
-                    notifications: [],
-                });
+                // this.setState({
+                //     notifications: [], //글이 다 나오고 초기화 시켜줌
+                // });
                 clearInterval(timer);
             }
         }, 1000);

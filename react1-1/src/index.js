@@ -22,7 +22,7 @@ import NotificationList from './chapter_06/NotificationList';
 
  root.render(
    <React.StrictMode>
-     <NotificationList />
+     <App />
    </React.StrictMode>
  );
 
