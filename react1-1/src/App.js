@@ -1,9 +1,4 @@
-import logo from './logo.svg';
 import './App.css';
-import Welcome from './chapter_05/Welcome';
-import NotificationList from './chapter_06/NotificationList';
-import Counter from './Counter';
-import FocusButton from './chapter_07/FocusButton';
 import Midterm from './Test/midterm';
 
 function App() {
@@ -23,7 +18,7 @@ function App() {
           Learn React
         </a>
   </header>*/}
-      <midterm/>
+      <Midterm/>
     </div>
   );
 }
