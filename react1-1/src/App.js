@@ -4,6 +4,7 @@ import Welcome from './chapter_05/Welcome';
 import NotificationList from './chapter_06/NotificationList';
 import Counter from './Counter';
 import FocusButton from './chapter_07/FocusButton';
+import Midterm from './Test/midterm';
 
 function App() {
   return (
@@ -21,13 +22,8 @@ function App() {
         >
           Learn React
         </a>
-      </header>
-      <Welcome name="인제"/>
-      <Welcome name="순신"/>
-      <Welcome name="강참"/> */}
-      {/* <NotificationList/> */}
-      {/* <Counter/> */}
-      <FocusButton/>
+  </header>*/}
+      <midterm/>
     </div>
   );
 }

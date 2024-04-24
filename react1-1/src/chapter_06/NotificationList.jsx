@@ -30,7 +30,7 @@ class NotificationList extends React.Component {
     componentDidMount() {
         const { notifications } = this.state;
         timer = setInterval(() => {
-            if (notifications.length < reservedNotifications.length) {
+            if (notifications.length < reservedNotifications.length) { //notifications의 길이가 reservedNotifications의 길이보다 작아야 새로운 알림이 추가됨
                 const index = notifications.length;
                 notifications.push(reservedNotifications[index]);
                 this.setState({
