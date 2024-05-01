@@ -1,4 +1,94 @@
 # 임승주 202030229
+## 5월 1일 강의 내용
+### 훅의 규칙 (첫번째는 4월 17일 강의 내용에 있음)
+#### 훅의 두번째 규칙
+    - 두번째 규칙은 함수형 컴포넌트에서만 훅을 호출해야 한다는 것
+    - 따라서 일반 자바스크립트 함수에서 훅을 호출하면 안됨
+    - 훅은 함수형 컴포넌트 혹은 직접 만든 커스텀 훅에서만 호출할 수 있음
+### 나만의 훅 만들기
+    - 필요 하다면 직접 훅을 만들어 쓸 수도 있음. 이것을 커스텀 훅이라고 함
+#### 1. 커스텀 훅을 만들어야 하는 상황
+```jsx
+import {useState, useEffect} from "react";
+
+export default function UserStatus(props) {
+    const [isOnline,setIsOnline] = useState(null)
+
+    useEffect(() => {
+        function handleStatusChange(status) {
+            setIsOnline(status.isOnline)
+        }
+
+        ServerAPI.subscribeUserStaus(props.user.id, handleStatusChange)
+        return () => {
+            ServerAPI.unsubscribeUserStatus(props.user.id, handleStatusChange)
+        }
+    })
+    if (isOnline === null) {
+        return "대기중..."
+    }
+    return isOnline ? "온라인" : "오프라인"
+}
+```
+#### 2. 커스텀 훅 추출하기
+    - use로 시작하는 훅을 만들고, 내부에서 다른 훅을 호출하면 됨
+    - 아래 코드는 중복되는 로직을 useUserStatus()라는 커스텀 훅으로 추출해낸 것임
+```jsx
+import {useState, useEffect} from "react";
+
+export default function useUserStatus(props) {
+    const [isOnline,setIsOnline] = useState(null)
+
+    useEffect(() => {
+        function handleStatusChange(status) {
+            setIsOnline(status.isOnline)
+        }
+
+        ServerAPI.subscribeUserStaus(props.user.id, handleStatusChange)
+        return () => {
+            ServerAPI.unsubscribeUserStatus(props.user.id, handleStatusChange)
+        }
+    })
+    return isOnline
+}
+```
+    - 한가지 주의할 점은 일반 컴포넌트와 마찬가지로 다른 훅을 호출하는 것은 무조건 커스텀 훅의 최상위 레벨에서만 해야 함
+#### 3. 커스텀 훅 사용하기
+    - 2에서 작성했던 코드를 사용자 훅을 사용하여 수정하면 다음과 같다
+```jsx
+import useUserSatus from "./useUserSatatus";
+
+export default function UserStatus(props) {
+    const isOnline = useUserSatus(props.user.id)
+    if (isOnline === null) {
+        return "대기중..."
+    }
+    return isOnline ? "온라인" : "오프라인"
+}
+```
+### 이벤트
+#### 이벤트 처리하기
+    - DOM에서 클릭 이벤트를 처리하는 예제 코드
+```jsx
+    <button onclick="active()">
+        Active
+    </button>
+```
+    - React에서 클릭 이벤트를 처리하는 예제 코드
+```jsx
+    <button onClick={active()}>
+        Active
+    </button>
+```
+    - 둘의 차이점은 
+        1) 이벤트 이름이 onclick에서 onClick을 변경(Camel case)
+        2) 전달하려는 함수는 문자열에서 함수를 그대로 전달
+#### 이벤트 핸들러 추가하는 방법
+    - 버튼을 클릭하면 이벤트 핸들러 함수인 handleClick()함수를 호출하도록 되어있음
+    - bind를 사용하지 않으면 this.handleClick은 글로벌 스코프에서 호출되어, undefined로 사용할수 없기 때문
+    - bind를 사용하지 않으려면 화살표 함수를 사용하는 방법도 있음
+    - 하지만 클래스 컴포넌트는 이제 거의 사용하지 않기 때문에 이 내용은 참고만 한다
+
 ## 4월 17일 강의 내용
 ### 중간고사 내용
 #### 날짜: 4월 24일 수요일 11시 실습
@@ -73,9 +163,10 @@ const memoizedCallback = useCallback(
     - 레퍼런스란 특정 컴포넌트에 접근할 수 있는 객체를 의미
     - useRef() 훅은 바로 이 레퍼런스 객체를 반환함
     - 레퍼런스 객체에는 .current라는 속성이 있는데, 이것은 현재 참조하고 있는 엘리먼트를 의미
-#### 훅의 규칙
+#### 훅의 첫번째 규칙
     - 첫번째 규칙은 무조건 최상의 레벨에서만 호출해야 한다는 것. 여기서 최상위는 컴포넌트의 최상위 레벨을 의미
-    - 딸라서 반복문이나 조건문 또는 중첩된 함수들 안에서 훅을 호출하면 안됨
+    - 따라서 반복문이나 조건문 또는 중첩된 함수들 안에서 훅을 호출하면 안됨
+    - 이 규칙에 따라서 훅은 컴포넌트가 렌더링 될 때마다 같은 순서로 호출되어야 함
 
 ## 4월 03일 강의 내용
 ### 컴포넌트
