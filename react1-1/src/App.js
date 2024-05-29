@@ -1,5 +1,6 @@
 import "./App.css";
 import AttendanceBook from "./AttendanceBook";
+import BoilingVerdict from "./BoilingVerdict";
 import LangdingPage from "./LandingPage";
 import LoginControl from "./LoginControl";
 import MainPage from "./MainPage";
@@ -11,11 +12,12 @@ import Toggle from "./Toggle";
 import ToolBar from "./ToolBar";
 import WarningBanner from "./WarningBanner";
 import Accommodate from "./chapter_07/AccommoDate";
+import SignUp from "./chapter_11/SingUp";
 
 function App() {
   return (
     <div className="App">
-      <NameForm />
+      <BoilingVerdict celsius="100" />
     </div>
   );
 }

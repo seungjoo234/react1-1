@@ -1,6 +1,17 @@
 # 임승주 202030229
 ## 교제 예시 사이트 https://github.com/soaple/first-met-react-practice-v18
 
+## 5월 29일 강의 내용
+
+### 폼(마저 함)
+
+#### File input 태그
+    -  File input 태그는 그 값이 읽기 전용이기 때문에 리액트에서는 비제어 컴포넌트가 된다. 
+
+#### Input Null Value
+    - 제어 컴포넌트에 value prop을 정해진 값으로 넣으면 코드를 수정하지 않는 한 입력값을 바꿀 수 없음
+    - 만약 value prop은 넣되 자유롭게 입력할 수 있게 만들고 싶다면 값이 undefined 또는 null을 넣어주면 됨
+
 ## 5월 22일 강의 내용
 
 ### 리스트와 키
