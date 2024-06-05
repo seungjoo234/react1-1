@@ -1,6 +1,72 @@
 # 임승주 202030229
 ## 교제 예시 사이트 https://github.com/soaple/first-met-react-practice-v18
 
+## 6월 05일 강의 내용
+
+### 합성
+
+#### 합성에 대해
+    - 합성(Composition)은 여러 개의 컴포넌트를 합쳐서 새로운 컴퍼넌트를 만드는 것
+    - 조합 방법에 따라 합성의 사용 기법은 다음가 같이 나눌 수 있음
+
+##### [1] Containment(담다, 포함하다, 격리하다)
+    - 특정 컴포넌트가 하위 컴포넌트를 포함하는 형태의 합성 방법
+    - 컴포넌트에 따라서는 어떤 자식 엘리먼트가 들어올 지 미리 예상할 수 없는 경우가 있음
+    - 범용적인 '박스' 역할을 하는 Sidebar 혹은 Dialog와 같은 컴포넌트에서 특히 자주 볼 수 있음
+    - 이런 컴포넌트에서는 children prop을 사용하여 자식 엘리먼트를 출력에 그대로 전달하는 것이 좋음
+    - 이때 children prop은 컴포넌트의 props에 기본적으로 들어있는 children속성을 사용함
+    - 다음과 같이 props.children을 사용하면 해당 컴포넌트의 하위 컴포넌트가 모두 children으로 들어오게 됨
+```jsx
+export default function FancyBorder(props) {
+    return(
+        <div className={'FancyBorder FancyBorder-' + props.color}>
+            {props.children}
+        </div>
+    )
+}
+```
+
+### Shared State
+
+#### Shared State
+    - Shared State는 state의 공유를 의미함
+    - 같은 부모 컴포넌트의 state를 자식 컴포넌트가 공유해서 사용하는 것
+
+#### 하위 컴포넌트에서 state 공유하기
+    - 물의 끓음 여부 확인
+```jsx
+//Calculator.jsx
+import { useState } from "react";
+import BoilingVerdict from "./BoilingVerdict";
+
+export default function Calculator() {
+    const [temperature, setTemperature] = useState()
+    const handleChange = (e) => {
+        setTemperature(e.target.value)
+    }
+
+    return (
+        <fieldset>
+            <legend>섭씨 온도를 입력하세요</legend>
+            <input value={temperature} onChange={handleChange}/>
+            <BoilingVerdict celsius={parseFloat(temperature)}/> 
+        </fieldset>
+    )
+}
+//BoilingVerdict.jsx
+export default function BoilingVerdict(props) {
+    if (props.celsius >= 100) {
+        return <p>물이 끓습니다.</p>
+    }
+    return <p>물이 끓지 않습니다.</p>
+}
+```
+
+#### Shared State 적용하기
+    - 하위 컴포넌트의 state를 부모 컴포넌트로 올려서 shared state를 적용함
+    - 이것을 Lifting State Up (State 끌어 올리기)라고 함
+    - 이를 위해 TemperactureInput 컴포넌트에서 온도 값을 가져오는 부분을 수정함
+
 ## 5월 29일 강의 내용
 
 ### 폼(마저 함)
