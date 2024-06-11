@@ -8,6 +8,7 @@ import MainPage from "./MainPage";
 import MyButton from "./MyButton";
 import NameForm from "./NameForm";
 import NumberList from "./NumberList";
+import ProfileCard from "./ProfileCard";
 import SplitPane from "./SplitPane";
 import TemperactureInput from "./TemperactureInput";
 import Midterm from "./Test/midterm";
@@ -21,7 +22,7 @@ import SignUp from "./chapter_11/SingUp";
 function App() {
   return (
     <div className="App">
-      <SplitPane />
+      <ProfileCard />
     </div>
   );
 }
