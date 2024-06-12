@@ -5,6 +5,7 @@ import Calculator from "./Calculator";
 import LangdingPage from "./LandingPage";
 import LoginControl from "./LoginControl";
 import MainPage from "./MainPage";
+import MainPage2 from "./MainPage2";
 import MyButton from "./MyButton";
 import NameForm from "./NameForm";
 import NumberList from "./NumberList";
@@ -22,7 +23,7 @@ import SignUp from "./chapter_11/SingUp";
 function App() {
   return (
     <div className="App">
-      <ProfileCard />
+      <MainPage2 />
     </div>
   );
 }
